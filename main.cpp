@@ -123,7 +123,7 @@ int main() {
         bool externalGroup1 = false;
 
         for (int i = 0; i < nodes/2; i++) {
-            if (group1[i] == externalIndex) {
+            if (group1[i] == externalIndex + 1) {
                 externalGroup1 = true;
                 //externalIndex = i;
 				cout << "largest external found in group 1" << endl;
@@ -167,25 +167,26 @@ int main() {
         }
 
 		cout << "Before swap, nextCost was " << nextCost << endl;
+		int index1, index2;
 		if(externalGroup1) { //group 1 holds the largest external point
 			cout << "swapping external from group 1 to internal from group 2" << endl;
-			cout << "Swapping nodes t1: " << tempGroup1[externalIndex] << " and 2: " << group2[internalIndex] << endl;
-			tempGroup1[externalIndex] = group2[internalIndex];
-			cout << "Swapping nodes t2: " << tempGroup2[internalIndex] << " and 1: " << group1[externalIndex] << endl;
-			tempGroup2[internalIndex] = group1[externalIndex];
+			index1 = externalIndex;
+			index2 = internalIndex;
 		} else {
+			index1 = internalIndex;
+			index2 = externalIndex;
 			cout << "swapping external from group 2 to internal from group 1" << endl;
-			cout << "Swapping nodes t1: " << tempGroup1[internalIndex] << " and 2: " << group2[externalIndex] << endl;
-			tempGroup1[internalIndex] = group2[externalIndex];
-			cout << "Swapping nodes t2: " << tempGroup2[externalIndex] << " and 1: " << group1[internalIndex] << endl;
-			tempGroup2[externalIndex] = group1[internalIndex];
 		}
+		cout << "Swapping nodes t1: " << tempGroup1[index1] << " and 2: " << group2[index2] << endl;
+		cout << "Swapping nodes t2: " << tempGroup2[index2] << " and 1: " << group1[index1] << endl;
+		tempGroup1[index1] = group2[index2];
+		tempGroup2[index2] = group1[index1];
 
 		nextCost = 0;
         for (int i = 0; i<nodes/2; i++){
             for (int j = 0; j<nodes/2;j++) {
                 nextCost += costs[tempGroup1[i] - 1][tempGroup2[j] - 1];
-				cout << "adding cost from temp1 node " << tempGroup1[i] << " to temp2 node " << tempGroup2[j] << ", which is " << costs[tempGroup1[i] - 1][tempGroup2[j] - 1] << endl;
+				//cout << "adding cost from temp1 node " << tempGroup1[i] << " to temp2 node " << tempGroup2[j] << ", which is " << costs[tempGroup1[i] - 1][tempGroup2[j] - 1] << endl;
             }
         }
 		cout << "nextCost for new group is " << nextCost << endl;
@@ -193,13 +194,13 @@ int main() {
 		if (nextCost != -1) { //if this isn't the first loop, update cost and groups
 			cout << "updating nextCost" << endl;
 			prevCost = nextCost;
-			group1[externalIndex] = tempGroup1[externalIndex];
-			group2[internalIndex] = tempGroup2[internalIndex];
+			cout << "prevCost is now " << prevCost << endl;
+			group1[index1] = tempGroup1[index1];
+			group2[index2] = tempGroup2[index2];
 		}
     } //END LOWEST COST LOOP
 
-    int finalCost;
-
+    int finalCost = 0;
     for (int i = 0; i<nodes/2; i++){
         for (int j = 0; j< nodes/2;j++) {
             finalCost = finalCost + costs[group1[i] - 1][group2[j] - 1];
