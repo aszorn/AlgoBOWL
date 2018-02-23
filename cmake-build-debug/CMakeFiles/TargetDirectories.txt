@@ -1,0 +1,3 @@
+/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/CMakeFiles/Algobowl_attempt1.dir
