@@ -1,3 +1,0 @@
-/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/CMakeFiles/Algobowl_attempt1.dir
-/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/CMakeFiles/edit_cache.dir
