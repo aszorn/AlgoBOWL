@@ -115,10 +115,10 @@ int main() {
 			if (externalCosts[i] > largestExternal) { //find the point with the greatest external cost
                 largestExternal = externalCosts[i];
                 externalIndex = i;
-				cout << "New largest external cost: " << externalIndex << " with cost " << externalCost << endl;
+				cout << "New largest external cost: " << externalIndex << " with cost " << largestExternal << endl;
             }
         }
-		cout << "Overall largest external cost: " << externalIndex << " with cost " << externalCost << endl << endl;
+		cout << "Overall largest external cost: " << externalIndex << " with cost " << largestExternal << endl << endl;
 
         bool externalGroup1 = false;
 
@@ -161,7 +161,7 @@ int main() {
                 if (internalCost > tempInternalCost) {
 					cout << "updating internalCost, was " << internalCost << " now is " << tempInternalCost << endl;
                     internalCost = tempInternalCost;
-                    internalIndex = i + 1;
+                    internalIndex = i;
                 }
             }
         }
