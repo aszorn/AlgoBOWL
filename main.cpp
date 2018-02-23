@@ -103,7 +103,6 @@ int main() {
 
 	//LOOP TO FIND LOWEST COST
     while (prevCost>nextCost) { //while we can still find a lower cost
-		index1 = index2 = 0; //probably not necessary?
 		if(nextCost != -1) { //if this isn't the first loop, update cost and groups
 			cout << "updating nextCost" << endl;
 			prevCost = nextCost;
@@ -111,6 +110,7 @@ int main() {
 			group1[index1] = tempGroup1[index1];
 			group2[index2] = tempGroup2[index2];
 		}
+		index1 = index2 = 0; //probably not necessary?
 
 		int externalCosts[nodes];
 		//Calculate external costs for all nodes
