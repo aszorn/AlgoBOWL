@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Algobowl_attempt1.dir/main.cpp.o  -o Algobowl_attempt1 
