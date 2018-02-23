@@ -8,82 +8,84 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug"/>
+				<Option working_dir="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug"/>
+				<Option working_dir="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Algobowl_attempt1">
-				<Option output="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Algobowl_attempt1.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug"/>
+				<Option output="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Algobowl_attempt1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/../../../../include/c++/7.3.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/../../../../include/c++/7.3.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/../../../../include/c++/7.3.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include-fixed"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Algobowl_attempt1"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 Algobowl_attempt1"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Algobowl_attempt1/fast">
-				<Option output="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Algobowl_attempt1.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug"/>
+				<Option output="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Algobowl_attempt1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/../../../../include/c++/7.3.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/../../../../include/c++/7.3.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/../../../../include/c++/7.3.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include-fixed"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/6.4.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Algobowl_attempt1/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j4 -f &quot;/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 Algobowl_attempt1/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/main.cpp">
+		<Unit filename="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/main.cpp">
 			<Option target="Algobowl_attempt1"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/CMakeLists.txt">
+		<Unit filename="/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

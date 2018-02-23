@@ -6,9 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/main.cpp
+/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/main.cpp
 iostream
 -
 fstream
+-
+climits
 -
 

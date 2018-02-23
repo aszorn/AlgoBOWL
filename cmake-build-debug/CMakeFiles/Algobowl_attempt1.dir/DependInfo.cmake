@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/main.cpp" "/cygdrive/c/Users/Abbey/Documents/School/Algorithms/c++/Algobowl_attempt1/cmake-build-debug/CMakeFiles/Algobowl_attempt1.dir/main.cpp.o"
+  "/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/main.cpp" "/home/jadelclemens/Development/C++/CSCI406/AlgoBOWL/cmake-build-debug/CMakeFiles/Algobowl_attempt1.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

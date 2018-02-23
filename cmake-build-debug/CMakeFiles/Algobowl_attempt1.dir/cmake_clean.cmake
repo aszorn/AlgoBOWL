@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Algobowl_attempt1.dir/main.cpp.o"
   "Algobowl_attempt1.pdb"
-  "Algobowl_attempt1.exe"
-  "libAlgobowl_attempt1.dll.a"
+  "Algobowl_attempt1"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,11 +1,13 @@
 #include <iostream>
 #include <fstream>
+#include <climits>
 
 using namespace std;
 
+//May not be in a working state
 int main() {
 
-    int N,V;
+    int nodes, edges;
     ifstream inFile;
     inFile.open("points.txt");
 
@@ -14,21 +16,23 @@ int main() {
         exit(1);   // call system to stop
     }
 
-    inFile >> N >> V; //stores the first row which is the number of points and edges
+    inFile >> nodes >> edges; //stores the first row which is the number of points and edges
 
-    int costs[N][N]; //creates a matrix of zeros
+    int costs[nodes][nodes]; //creates a matrix of zeros
     int pt1;
     int pt2;
     int cost;
 
-    for (int i = 0; i < N; i++){
-        for(int j = 0; j < N; j++){
+	//initialize costs to 0
+    for (int i = 0; i < nodes; i++){
+        for(int j = 0; j < nodes; j++){
             costs[i][j] = 0;
         }
     }
 
+	//read in points and the edge cost
     while(inFile>>pt1>>pt2>>cost){
-        pt1--;
+        pt1--; //points are 0-indexed
         pt2--;
         costs[pt1][pt2]=cost;
         costs[pt2][pt1]=cost;
@@ -36,26 +40,31 @@ int main() {
 
     inFile.close();
 
+	//each group is exactly half the total number of nodes
     //cout << N/2 << endl << endl;
-    int group1[N/2];
-    int group2[N/2];
+    int group1[nodes/2];
+    int group2[nodes/2];
 
-    int tempGroup1[N/2];
-    int tempGroup2[N/2];
+	//for comparison later
+    int tempGroup1[nodes/2];
+    int tempGroup2[nodes/2];
 
 
-    for (int i = 0; i<N;i++){
-        if(i < N/2){
+    for (int i = 0; i<nodes; ++i){
+        if(i < nodes/2){
             group1[i] = i+1;
             tempGroup1[i] = i+1;
-        }
+			//cout << "group1 holds node " << i+1 << " at index " << i << endl;
+		}
         else{
-            group2[i - N/2] = i+1;
-            tempGroup2[i-N/2] = i+1;
+            group2[i - nodes/2] = i+1;
+            tempGroup2[i-nodes/2] = i+1;
+			//cout << "group2 holds node " << i+1 << " at index " << i << endl;
         }
     }
+	//cout << endl << endl;
 
-    for (int i = 0; i < N/2; i++){
+    for (int i = 0; i < nodes/2; i++){
         /*for(int j = 0; j < N; j++){
             cout << costs[i][j] << " ";
         }*/
@@ -71,109 +80,139 @@ int main() {
     //cout << g1 << endl << endl;
 
     int prevCost = 0;
-    for (int i = 0; i< N/2; i++){
-        for (int j = 0; j< N/2; j++) {
+    for (int i = 0; i< nodes/2; i++){
+        for (int j = 0; j< nodes/2; j++) {
             int tempG1Cost = group1[i]-1;
             int tempG2Cost = group2[j]-1;
-            //cout << tempG1Cost << " " << tempG2Cost << endl;
+			//cout << "adding costs from node " << group1[i]-1 << " to node " << group2[j]-1 << endl;
+			//cout << tempG1Cost << " " << tempG2Cost << endl;
             prevCost = prevCost + costs[tempG1Cost][tempG2Cost];
+			//cout << "that cost was " << costs[tempG1Cost][tempG2Cost] << endl;
             //cout << prevCost << endl;
         }
     }
-
+	cout << "prevCost is now " << prevCost << endl << endl;
 
     int nextCost = -1;
-    int externalPoint;
-    int internalPoint;
+    int externalIndex;
+    int internalIndex;
 
-    while (prevCost>nextCost) {
-        if (nextCost != -1){
-            prevCost = nextCost;
-            group1[externalPoint] = tempGroup1[externalPoint];
-            group2[internalPoint] = tempGroup2[internalPoint];
-        }
+	//LOOP TO FIND LOWEST COST
+    while (prevCost>nextCost) { //while we can still find a lower cost
+        int externalCosts[nodes];
+        externalIndex = 0;
+		int largestExternal = INT_MIN;
 
-        int externalCost = 0;
-        externalPoint = 0;
-
-        for (int i = 0; i < N; i++) {
-            int tempCost = 0;
-            for (int j = 0; j < N; j++) {
-                tempCost = tempCost + costs[i][j];
+		//TODO: Consider keeping an array of external costs to consider the lowest with mutual external bonds
+		//Example: swapping 5 with 2. 5 has external of 3, 2 has external of 1. 5 and 2 have shared path of 1, so 5 really only has external of 2.
+		//Probably still pick the lowest internal of the other group
+        for (int i = 0; i < nodes; i++) {
+            externalCosts[i] = 0;
+            for (int j = 0; j < nodes; j++) {
+                externalCosts[i] += costs[i][j];
             }
-            if (externalCost < tempCost) {
-                externalCost = tempCost;
-                externalPoint = i+1;
+			cout << "external cost for node " << i+1 << ": " << externalCosts[i] << endl;
+			if (externalCosts[i] > largestExternal) { //find the point with the greatest external cost
+                largestExternal = externalCosts[i];
+                externalIndex = i;
+				cout << "New largest external cost: " << externalIndex << " with cost " << externalCost << endl;
             }
         }
+		cout << "Overall largest external cost: " << externalIndex << " with cost " << externalCost << endl << endl;
 
         bool externalGroup1 = false;
 
-        for (int i = 0; i < N/2; i++) {
-            if (group1[i] == externalPoint) {
+        for (int i = 0; i < nodes/2; i++) {
+            if (group1[i] == externalIndex) {
                 externalGroup1 = true;
-                externalPoint = i;
+                //externalIndex = i;
+				cout << "largest external found in group 1" << endl;
             }
         }
+		if(!externalGroup1) cout << "largest external found in group 2" << endl;
+		cout << endl;
 
-        int internalCost = -1;
-        internalPoint = 0;
+        int internalCost = INT_MAX; //we want to find something lower
+        internalIndex = 0;
 
         if (externalGroup1) {
-            for (int i = 0; i < N/2; i++) {
-                int tempCost = 0;
-                for (int j = 0; j < N/2; j++) {
-                    tempCost = tempCost + costs[group2[i]-1][group2[j]-1];
+			cout << "summing internal costs for group 2" << endl;
+            for (int i = 0; i < nodes/2; i++) {
+                int tempInternalCost = 0;
+                for (int j = 0; j < nodes/2; j++) {
+                    tempInternalCost += costs[group2[i]-1][group2[j]-1];
+					cout << "cost from node " << group2[i] << " to " << group2[j] << " is " << costs[group2[i]-1][group2[j]-1] << endl;
                 }
-                if (internalCost > tempCost || internalCost == -1) {
-                    internalCost = tempCost;
-                    internalPoint = i;
+                if (internalCost > tempInternalCost) {
+					cout << "updating internalCost, was " << internalCost << " now is " << tempInternalCost << endl;
+                    internalCost = tempInternalCost;
+                    internalIndex = i;
                 }
             }
 
         } else {
-            for (int i = 0; i < N/2; i++) {
-                int tempCost = 0;
-                for (int j = 0; j < N/2; j++) {
-                    tempCost = tempCost + costs[group1[i]-1][group1[j]-1];
+			cout << "summing internal costs for group 1" << endl;
+            for (int i = 0; i < nodes/2; i++) {
+                int tempInternalCost = 0;
+                for (int j = 0; j < nodes/2; j++) {
+                    tempInternalCost += costs[group1[i]-1][group1[j]-1];
+					cout << "cost from node " << group1[i] << " to " << group1[j] << " is " << costs[group1[i]-1][group1[j]-1] << endl;
                 }
-                if (internalCost > tempCost || internalCost == -1) {
-                    internalCost = tempCost;
-                    internalPoint = i + 1;
-                }
-            }
-
-            for (int i = 0; i < N/2; i++) {
-                if (group2[i] == externalPoint) {
-                    externalPoint = i;
+                if (internalCost > tempInternalCost) {
+					cout << "updating internalCost, was " << internalCost << " now is " << tempInternalCost << endl;
+                    internalCost = tempInternalCost;
+                    internalIndex = i + 1;
                 }
             }
         }
-        tempGroup1[externalPoint] = group2[internalPoint];
-        tempGroup2[internalPoint] = group1[externalPoint];
 
-        for (int i = 0; i<N/2; i++){
-            for (int j = 0; j<N/2;j++) {
-                nextCost = nextCost + costs[tempGroup1[i] - 1][tempGroup2[j] - 1];
+		cout << "Before swap, nextCost was " << nextCost << endl;
+		if(externalGroup1) { //group 1 holds the largest external point
+			cout << "swapping external from group 1 to internal from group 2" << endl;
+			cout << "Swapping nodes t1: " << tempGroup1[externalIndex] << " and 2: " << group2[internalIndex] << endl;
+			tempGroup1[externalIndex] = group2[internalIndex];
+			cout << "Swapping nodes t2: " << tempGroup2[internalIndex] << " and 1: " << group1[externalIndex] << endl;
+			tempGroup2[internalIndex] = group1[externalIndex];
+		} else {
+			cout << "swapping external from group 2 to internal from group 1" << endl;
+			cout << "Swapping nodes t1: " << tempGroup1[internalIndex] << " and 2: " << group2[externalIndex] << endl;
+			tempGroup1[internalIndex] = group2[externalIndex];
+			cout << "Swapping nodes t2: " << tempGroup2[externalIndex] << " and 1: " << group1[internalIndex] << endl;
+			tempGroup2[externalIndex] = group1[internalIndex];
+		}
+
+		nextCost = 0;
+        for (int i = 0; i<nodes/2; i++){
+            for (int j = 0; j<nodes/2;j++) {
+                nextCost += costs[tempGroup1[i] - 1][tempGroup2[j] - 1];
+				cout << "adding cost from temp1 node " << tempGroup1[i] << " to temp2 node " << tempGroup2[j] << ", which is " << costs[tempGroup1[i] - 1][tempGroup2[j] - 1] << endl;
             }
         }
-    }
+		cout << "nextCost for new group is " << nextCost << endl;
+
+		if (nextCost != -1) { //if this isn't the first loop, update cost and groups
+			cout << "updating nextCost" << endl;
+			prevCost = nextCost;
+			group1[externalIndex] = tempGroup1[externalIndex];
+			group2[internalIndex] = tempGroup2[internalIndex];
+		}
+    } //END LOWEST COST LOOP
 
     int finalCost;
 
-    for (int i = 0; i<N/2; i++){
-        for (int j = 0; j< N/2;j++) {
+    for (int i = 0; i<nodes/2; i++){
+        for (int j = 0; j< nodes/2;j++) {
             finalCost = finalCost + costs[group1[i] - 1][group2[j] - 1];
         }
     }
     //cout << endl;
 
     cout << finalCost << endl;
-    for (int i = 0; i < N/2; i++){
+    for (int i = 0; i < nodes/2; i++){
         cout << group1[i] << " ";
     }
     cout << endl;
-    for(int i = 0; i < N/2; i++){
+    for(int i = 0; i < nodes/2; i++){
         cout << group2[i] << " ";
     }
     cout << endl << endl;
