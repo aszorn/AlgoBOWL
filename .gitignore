@@ -2,4 +2,5 @@ cmake-build-debug/
 .idea/
 
 *.stackdump
-outfile.txt
+outfile*
+*.out
