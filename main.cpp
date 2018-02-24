@@ -396,7 +396,7 @@ void verifyOutput(string inputfile, string outputfile) {
 		//cout << next.str() << endl;
 	}
 
-
+	/* OUTPUT TEAM'S SCORE AND GROUPINGS
 	cout << "cost: " << score << endl;
 	cout << "Group 1: "<< endl;
 	for(auto m : group1) {
@@ -408,6 +408,7 @@ void verifyOutput(string inputfile, string outputfile) {
 		cout << m << " ";
 	}
 	cout << endl;
+	*/
 
 	int foundCost = 0;
 	for(auto node1 : group1) {
