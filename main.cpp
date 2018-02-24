@@ -3,106 +3,154 @@
 #include <climits>
 #include <vector>
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 
-//May not be in a working state
+void runOnFile(string filename);
+void verifyOutput(string inputfile, string outputfile);
+
+#define PATH "/home/jadelclemens/Downloads/"
+
 int main() {
+	/*
+	 * NEW PROGRAM STRUCTURE:
+	 *
+	 * First, make sure PATH points to the directory where the input/output files are stored. For convenience, I've pointed this at my Downloads
+	 * Put the numeric identifiers for all of the tests to run in toRun:
+	 * - Put them before the runOnFile block to run the given input files and generate a (suboptimal, but hopefully valid) grouping
+	 * - Put them before the verifyOutput block to check the given output files for validity against our input file
+	 * The actual filenames (as downloaded from the AlgoBOWL site) will be constructed for you based on the team numbers.
+	 */
 
-    int nodes, edges;
-    ifstream inFile;
-    inFile.open("points.txt");
+	//No need to change these
+	string ifbegin = "input_group";
+	string ifend = ".txt";
+	string filename;
 
-    if (!inFile) {
-        cout << "Unable to open file points.txt";
-        exit(1);   // call system to stop
-    }
+	//ALGOBOWL SOLUTION
+	vector<int> toRun = {};
+	vector<int> runLater = {18};
+	vector<int> ran = {1, 2, 4, 6, 8, 9, 10, 12, 14, 17, 21, 22, 23, 25};
 
-    inFile >> nodes >> edges; //stores the first row which is the number of points and edges
+	for(int num : toRun) {
+		filename = ifbegin + to_string(num) + ifend;
+		runOnFile(filename);
+	}
 
-    int costs[nodes][nodes]; //creates a matrix of zeros
-    int pt1;
-    int pt2;
-    int cost;
+	//INPUT VERIFICATION
+	//No need to change these
+	string ourfile = "input_group11.txt";
+	ifbegin = "output_from_";
+	ifend = "_to_11.txt";
+
+	toRun = {1};
+
+	for(int num : toRun) {
+		filename = ifbegin + to_string(num) + ifend;
+		verifyOutput(ourfile, filename);
+	}
+
+    return 0;
+}
+
+void runOnFile(string filename) {
+	int nodes, edges;
+	string outname = filename + ".out";
+	ofstream outfile(outname);
+
+	ifstream inFile(PATH + filename);
+
+	if (!inFile) {
+		cout << "Unable to open file " << PATH + filename << endl;
+		exit(1);   // call system to stop
+	}
+
+	inFile >> nodes >> edges; //stores the first row which is the number of points and edges
+
+	int costs[nodes][nodes]; //creates a matrix of zeros
+	int pt1;
+	int pt2;
+	int cost;
 
 	//initialize costs to 0
-    for (int i = 0; i < nodes; i++){
-        for(int j = 0; j < nodes; j++){
-            costs[i][j] = 0;
-        }
-    }
+	for (int i = 0; i < nodes; i++){
+		for(int j = 0; j < nodes; j++){
+			costs[i][j] = 0;
+		}
+	}
 
 	//read in points and the edge cost
-    while(inFile>>pt1>>pt2>>cost){
-        pt1--; //points are 0-indexed
-        pt2--;
-        costs[pt1][pt2]=cost;
-        costs[pt2][pt1]=cost;
-    }
+	while(inFile>>pt1>>pt2>>cost){
+		pt1--; //points are 0-indexed
+		pt2--;
+		costs[pt1][pt2]=cost;
+		costs[pt2][pt1]=cost;
+	}
 
-    inFile.close();
+	inFile.close();
 
 	//each group is exactly half the total number of nodes
-    //cout << N/2 << endl << endl;
-    int group1[nodes/2];
-    int group2[nodes/2];
+	//cout << N/2 << endl << endl;
+	int group1[nodes/2];
+	int group2[nodes/2];
 
 	//for comparison later
-    int tempGroup1[nodes/2];
-    int tempGroup2[nodes/2];
+	int tempGroup1[nodes/2];
+	int tempGroup2[nodes/2];
 
 
-    for (int i = 0; i<nodes; ++i){
-        if(i < nodes/2){
-            group1[i] = i+1;
-            tempGroup1[i] = i+1;
+	for (int i = 0; i<nodes; ++i){
+		if(i < nodes/2){
+			group1[i] = i+1;
+			tempGroup1[i] = i+1;
 			//cout << "group1 holds node " << i+1 << " at index " << i << endl;
 		}
-        else{
-            group2[i - nodes/2] = i+1;
-            tempGroup2[i-nodes/2] = i+1;
+		else{
+			group2[i - nodes/2] = i+1;
+			tempGroup2[i-nodes/2] = i+1;
 			//cout << "group2 holds node " << i+1 << " at index " << i << endl;
-        }
-    }
+		}
+	}
 	//cout << endl << endl;
 
-    //for (int i = 0; i < nodes/2; i++){
-        /*for(int j = 0; j < N; j++){
-            cout << costs[i][j] << " ";
-        }*/
-        //cout << group1[i]<< " " << group2[i] << endl;
+	//for (int i = 0; i < nodes/2; i++){
+	/*for(int j = 0; j < N; j++){
+		cout << costs[i][j] << " ";
+	}*/
+	//cout << group1[i]<< " " << group2[i] << endl;
 
-    //}
+	//}
 
-    //cout << endl;
+	//cout << endl;
 
-    //int g1 = sizeof(group1[0]);
-    //int g2 = sizeof(group2[0]);
+	//int g1 = sizeof(group1[0]);
+	//int g2 = sizeof(group2[0]);
 
-    //cout << g1 << endl << endl;
+	//cout << g1 << endl << endl;
 
-    int prevCost = 0;
-    for (int i = 0; i< nodes/2; i++){
-        for (int j = 0; j< nodes/2; j++) {
-            int tempG1Cost = group1[i]-1;
-            int tempG2Cost = group2[j]-1;
+	int prevCost = 0;
+	for (int i = 0; i< nodes/2; i++){
+		for (int j = 0; j< nodes/2; j++) {
+			int tempG1Cost = group1[i]-1;
+			int tempG2Cost = group2[j]-1;
 			//cout << "adding costs from node " << group1[i]-1 << " to node " << group2[j]-1 << endl;
 			//cout << tempG1Cost << " " << tempG2Cost << endl;
-            prevCost = prevCost + costs[tempG1Cost][tempG2Cost];
+			prevCost = prevCost + costs[tempG1Cost][tempG2Cost];
 			//cout << "that cost was " << costs[tempG1Cost][tempG2Cost] << endl;
-            //cout << prevCost << endl;
-        }
-    }
+			//cout << prevCost << endl;
+		}
+	}
 	cout << "prevCost is " << prevCost << endl << endl;
 
-    int nextCost = -1;
-    int externalIndex;
-    int internalIndex;
+	int nextCost = -1;
+	int externalIndex;
+	int internalIndex;
 	int index1;
 	int index2;
 
 	//LOOP TO FIND LOWEST COST
-    while (prevCost>nextCost) { //while we can still find a lower cost
+	while (prevCost>nextCost) { //while we can still find a lower cost
 		if(nextCost != -1) { //if this isn't the first loop, update cost and groups
 			cout << "updating nextCost" << endl;
 			prevCost = nextCost;
@@ -159,10 +207,10 @@ int main() {
 			if(group1[i] == externalIndex + 1) {
 				externalGroup1 = true;
 				//externalIndex = i;
-				cout << "largest external found in group 1" << endl;
+				//cout << "largest external found in group 1" << endl;
 			}
 		}
-		if(!externalGroup1) cout << "largest external found in group 2" << endl;
+		//if(!externalGroup1) cout << "largest external found in group 2" << endl;
 		cout << endl;
 
 		int lowestInternal = INT_MAX; //we want to find something lower
@@ -218,27 +266,27 @@ int main() {
 			lowestInternal = INT_MAX;
 			for(int j = 0; j < nodes/2; ++j) {
 				if(find(swapped.begin(), swapped.end(), j) != swapped.end()) {
-					cout << "attempted to use " << j << ", which was already tried" << endl;
+					//cout << "attempted to use " << j << ", which was already tried" << endl;
 					continue; //we've already tried this index
 				} else {
-					cout << "index " << j << " not found in swapped list " << endl;
+					//cout << "index " << j << " not found in swapped list " << endl;
 				}
 				if(lowestInternal > internalCosts[j]) {
-					cout << "updating lowestInternal, was " << lowestInternal << " now is " << internalCosts[j] << endl;
+					//cout << "updating lowestInternal, was " << lowestInternal << " now is " << internalCosts[j] << endl;
 					lowestInternal = internalCosts[j];
 					internalIndex = j;
 				}
 			}
 
-			cout << "adding " << internalIndex << " to list of attempted swaps " << endl;
+			//cout << "adding " << internalIndex << " to list of attempted swaps " << endl;
 			swapped.push_back(internalIndex);
 
 			if(externalGroup1) { //group 1 holds the largest external point
-				cout << "swapping external from group 1 to internal from group 2" << endl;
+				//cout << "swapping external from group 1 to internal from group 2" << endl;
 				index1 = externalIndex;
 				index2 = internalIndex;
 			} else {
-				cout << "swapping external from group 2 to internal from group 1" << endl;
+				//cout << "swapping external from group 2 to internal from group 1" << endl;
 				index1 = internalIndex;
 				index2 = externalIndex;
 			}
@@ -256,26 +304,119 @@ int main() {
 			}
 			cout << "nextCost for new group is " << nextCost << endl;
 		}
-    } //END LOWEST COST LOOP
+	} //END LOWEST COST LOOP
 	cout << endl << endl;
 
-    int finalCost = 0;
-    for (int i = 0; i<nodes/2; i++){
-        for (int j = 0; j< nodes/2;j++) {
-            finalCost = finalCost + costs[group1[i] - 1][group2[j] - 1];
-        }
-    }
-    //cout << endl;
+	int finalCost = 0;
+	for (int i = 0; i<nodes/2; i++){
+		for (int j = 0; j< nodes/2;j++) {
+			finalCost = finalCost + costs[group1[i] - 1][group2[j] - 1];
+		}
+	}
+	//cout << endl;
 
-    cout << finalCost << endl;
-    for (int i = 0; i < nodes/2; i++){
-        cout << group1[i] << " ";
-    }
-    cout << endl;
-    for(int i = 0; i < nodes/2; i++){
-        cout << group2[i] << " ";
-    }
-    cout << endl << endl;
+	cout << finalCost << endl;
+	outfile << finalCost << endl;
+	for (int i = 0; i < nodes/2; i++){
+		cout << group1[i] << " ";
+		outfile << group1[i] << " ";
+	}
+	cout << endl;
+	outfile << endl;
+	for(int i = 0; i < nodes/2; i++){
+		cout << group2[i] << " ";
+		outfile << group2[i] << " ";
+	}
+	cout << endl << endl;
+}
 
-    return 0;
+void verifyOutput(string inputfile, string outputfile) {
+	cout << "verifying output for input " << inputfile << " held in file " << outputfile << endl << endl;
+	int nodes, edges;
+	ifstream inFile(PATH + inputfile);
+	ifstream oFile(PATH + outputfile);
+
+	if (!inFile) {
+		cout << "Unable to open file " << PATH + inputfile << endl;
+		exit(1);   // call system to stop
+	}
+	if(!oFile) {
+		cout << "Unable to open file " << PATH + outputfile << endl;
+		exit(1);
+	}
+
+	inFile >> nodes >> edges; //stores the first row which is the number of points and edges
+
+	int costs[nodes][nodes]; //creates a matrix of zeros
+	int pt1;
+	int pt2;
+	int cost;
+
+	//initialize costs to 0
+	for (int i = 0; i < nodes; i++){
+		for(int j = 0; j < nodes; j++){
+			costs[i][j] = 0;
+		}
+	}
+
+	//read in points and the edge cost
+	while(inFile>>pt1>>pt2>>cost){
+		pt1--; //points are 0-indexed
+		pt2--;
+		costs[pt1][pt2]=cost;
+		costs[pt2][pt1]=cost;
+	}
+
+	inFile.close();
+
+	int score;
+	vector<int> group1, group2;
+	ostringstream next;
+	string nextLine;
+	oFile >> score;
+	oFile.ignore();
+	bool g1 = true;
+	while(!oFile.eof()) {
+		next.clear();
+		getline(oFile, nextLine);
+		if(!nextLine.empty()) {
+			string::size_type spacePos = 0;
+			auto lastPos = spacePos;
+			while((spacePos = nextLine.find(' ', lastPos)) != nextLine.npos) {
+				if(g1) {
+					group1.emplace_back(stoi(nextLine.substr(lastPos, spacePos-lastPos)));
+				} else {
+					group2.emplace_back(stoi(nextLine.substr(lastPos, spacePos-lastPos)));
+				}
+				lastPos = spacePos + 1;
+			}
+			g1 = false;
+		}
+		//next << nextLine;
+		//cout << next.str() << endl;
+	}
+
+
+	cout << "cost: " << score << endl;
+	cout << "Group 1: "<< endl;
+	for(auto m : group1) {
+		cout << m << " ";
+	}
+
+	cout << endl << "Group 2: " << endl;
+	for(auto m : group2) {
+		cout << m << " ";
+	}
+	cout << endl;
+
+	int foundCost = 0;
+	for(auto node1 : group1) {
+		for(auto node2 : group2) {
+			foundCost += costs[node1-1][node2-1];
+		}
+	}
+
+	cout << "Output file " << outputfile << " is ";
+	if(foundCost != score) cout << "not ";
+	cout << "valid." << endl;
 }
