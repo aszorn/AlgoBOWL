@@ -30,8 +30,8 @@ int main() {
 
 	//ALGOBOWL SOLUTION
 	vector<int> toRun = {};
-	vector<int> runLater = {18};
-	vector<int> ran = {1, 2, 4, 6, 8, 9, 10, 12, 14, 17, 21, 22, 23, 25};
+	//runLater = {}
+	//ran = {1, 2, 4, 6, 8, 9, 10, 12, 14, 17, 18, 21, 22, 23, 25}
 
 	for(int num : toRun) {
 		filename = ifbegin + to_string(num) + ifend;
@@ -44,7 +44,7 @@ int main() {
 	ifbegin = "output_from_";
 	ifend = "_to_11.txt";
 
-	toRun = {1};
+	toRun = {};
 
 	for(int num : toRun) {
 		filename = ifbegin + to_string(num) + ifend;
@@ -253,7 +253,7 @@ void runOnFile(string filename) {
 		cout << endl << endl;*/
 
 		vector<int> swapped; //will hold indices of the second group that have been attempted
-		while(swapped.size() < nodes/2 && (nextCost > prevCost || nextCost == -1)) { //Loop through possibilities until we've tried everything (swapped holds all members of group) or we find a better cost
+		while(swapped.size() < nodes/2 && (nextCost >= prevCost || nextCost == -1)) { //Loop through possibilities until we've tried everything (swapped holds all members of group) or we find a better cost
 			for(int k = 0; k < nodes/2; ++k) { //reset temp groups if swap was not actually made
 				tempGroup1[k] = group1[k];
 				tempGroup2[k] = group2[k];
